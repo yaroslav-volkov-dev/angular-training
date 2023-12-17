@@ -1,0 +1,30 @@
+<div class="py-4 px-6 border rounded flex items-center flex-col mb-2 h-[550px]">
+  <div class="flex flex-col items-center grow">
+    <img
+      [ngSrc]="product.image"
+      width="100"
+      height="100"
+      [alt]="product.title"
+      priority
+    >
+    <h2 class="mb-2 text-lg text-center">{{ product.title }}</h2>
+    <div
+      class="flex flex-col max-h-[250px] overflow-y-auto"
+      *ngIf="isDetailsVisible"
+    >
+      <p>Price: {{ product.price | currency: 'GRN' }}</p>
+      <p>Description: {{ product.description }}</p>
+      <p>Rate: <span [ngStyle]="{fontWeight: 'bold'}">{{ product.rating.rate }}</span></p>
+    </div>
+  </div>
+  <button
+    class="border py-2 px-4 rounded"
+    [ngClass]="{
+      'bg-yellow-400': !isDetailsVisible,
+      'bg-blue-400':  isDetailsVisible
+    }"
+    (click)="isDetailsVisible = !isDetailsVisible"
+  >
+    {{ isDetailsVisible ? 'Hide' : 'Show' }} details
+  </button>
+</div>
